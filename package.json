@@ -1,0 +1,19 @@
+{
+  "name": "inertia-vue-table",
+  "version": "1.0.0",
+  "description": "Inertia Vue Table Component",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:humweb/inertia-vue-table.git"
+  },
+  "author": "ryun <ryun@humboldtweb.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/humweb/inertia-vue-table/issues"
+  },
+  "homepage": "https://github.com/humweb/inertia-vue-table#readme"
+}
