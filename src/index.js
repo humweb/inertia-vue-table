@@ -1,24 +1,11 @@
-import InteractsWithQueryBuilder from './InteractsWithQueryBuilder.vue';
-import ButtonWithDropdown from './ButtonWithDropdown.vue';
-import HeaderCell from './HeaderCell.vue';
-import Pagination from './Pagination.vue';
-import Table from './Table.vue';
-import TableAddSearchRow from './TableAddSearchRow.vue';
-import TableColumns from './TableColumns.vue';
-import TableFilter from './TableFilter.vue';
-import TableGlobalSearch from './TableGlobalSearch.vue';
-import TableSearchRows from './TableSearchRows.vue';
-import TableWrapper from './TableWrapper.vue';
 
-export const InteractsWithQueryBuilder = InteractsWithQueryBuilder;
-export const ButtonWithDropdown = ButtonWithDropdown;
-export const HeaderCell = HeaderCell;
-export const Pagination = Pagination;
-export const Table = Table;
-export const TableAddSearchRow = TableAddSearchRow;
-export const TableColumns = TableColumns;
-export const TableFilter = TableFilter;
-export const TableGlobalSearch = TableGlobalSearch;
-export const TableSearchRows = TableSearchRows;
-export const TableWrapper = TableWrapper;
-
+export {default as HasInertiaTable} from './mixins/hasInertiaTable';
+export {default as Dropdown} from './components/Dropdown.vue';
+export {default as HeaderCell} from './components/HeaderCell.vue';
+export {default as Pagination} from './components/Pagination.vue';
+export {default as Table} from './components/Table.vue';
+export {default as TableAddSearchRow} from './components/filters/TableAddSearchRow.vue';
+export {default as TableColumns} from './components/TableColumns.vue';
+export {default as TableFilter} from './components/filters/TableFilter.vue';
+export {default as TableGlobalSearch} from './components/filters/TableGlobalSearch.vue';
+export {default as TableSearchRows} from './components/filters/TableSearchRows.vue';
