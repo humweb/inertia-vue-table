@@ -25,7 +25,7 @@ mixins: [HasInertiaTable]
 
 ## Step. 3: Add component to your template
 
-```vue-html
+```html
  <Table
     :records="records"
     :pagination="pagination"
