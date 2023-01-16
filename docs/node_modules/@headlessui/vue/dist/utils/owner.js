@@ -1,0 +1,1 @@
+import{dom as n}from'./dom.js';import{isServer as t}from'./ssr.js';function m(r){if(t)return null;if(r instanceof Node)return r.ownerDocument;if(r!=null&&r.hasOwnProperty("value")){let o=n(r);if(o)return o.ownerDocument}return document}export{m as getOwnerDocument};

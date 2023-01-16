@@ -1,0 +1,1 @@
+import{watchEffect as i}from"vue";import{isServer as r}from'../utils/ssr.js';function w(e,n,t){r||i(o=>{window.addEventListener(e,n,t),o(()=>window.removeEventListener(e,n,t))})}export{w as useWindowEvent};
