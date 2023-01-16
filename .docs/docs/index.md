@@ -2,12 +2,12 @@
 layout: home
 
 title: InertiaVueTable
-titleTemplate: Vite & Vue Powered Static Site Generator
+titleTemplate: Inertia Vue Table 
 
 hero:
   name: InertiaVueTable
   text: Inertia & Vue Powered Tables
-  tagline: Inerta, Vue, and PHP combined to create a perfect symphony.
+  tagline: Inertia, Vue, and PHP combined to create a perfect symphony.
   actions:
     - theme: brand
       text: Get Started

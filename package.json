@@ -1,7 +1,7 @@
 {
-    "name": "inertia-vue-table",
+    "name": "@humweb/illuminator",
     "version": "1.0.0",
-    "description": "Inertia Vue Table Component",
+    "description": "A Laravel Inertia Vue Table Component",
     "main": "src/index.js",
     "scripts": {
         "dev": "vite",
