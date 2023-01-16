@@ -14,6 +14,6 @@ hero:
       link: /guide/getting-started
     - theme: alt
       text: View on GitHub
-      link: https://github.com/vuejs/vitepress
+      link: https://github.com/humweb/inertia-vue-table
 
 ---
