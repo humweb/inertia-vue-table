@@ -8,14 +8,14 @@
             <component
                 :is="previousPageUrl ? 'Link' : 'div'"
                 :href="previousPageUrl"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 dark:border-gray-800 dark:text-gray-200"
-            >{{ translations.previous }}
+                class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white dark:bg-gray-700 hover:text-gray-500 dark:border-gray-800 dark:text-gray-200"
+            >Previous
             </component>
             <component
                 :is="nextPageUrl ? 'Link' : 'div'"
                 :href="nextPageUrl"
-                class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:text-gray-500 dark:border-gray-800 dark:text-gray-200"
-            >{{ translations.next }}
+                class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white dark:bg-gray-700 hover:text-gray-500 dark:border-gray-800 dark:text-gray-200"
+            >Next
             </component>
         </div>
         <div
@@ -23,13 +23,14 @@
             class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
         >
             <div>
-                <p class="hidden lg:block text-sm text-gray-700 dark:text-gray-200">
+            <slot />
+                <p class="hidden lg:inline text-sm text-gray-700 dark:text-gray-200">
                     <span class="font-medium">{{ pagination.from }}</span>
-                    {{ translations.to }}
+                    to
                     <span class="font-medium">{{ pagination.to }}</span>
-                    {{ translations.of }}
+                    of
                     <span class="font-medium">{{ pagination.total }}</span>
-                    {{ translations.results }}
+                    results
                 </p>
             </div>
             <div>
@@ -42,7 +43,7 @@
                         :href="previousPageUrl"
                         class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-500"
                     >
-                        <span class="sr-only">{{ translations.previous }}</span>
+                        <span class="sr-only">Previous</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-5 w-5"
@@ -75,7 +76,7 @@
                         :href="nextPageUrl"
                         class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-500"
                     >
-                        <span class="sr-only">{{ translations.next }}</span>
+                        <span class="sr-only">Next</span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             class="h-5 w-5"
@@ -93,7 +94,7 @@
             </div>
         </div>
     </nav>
-    <p v-if="pagination.total == 0" class="p-4 text-center">{{ translations.no_results_found }}</p>
+    <p v-if="pagination.total == 0" class="p-4 text-center">No results found</p>
 </template>
 
 <script>
@@ -107,30 +108,7 @@ export default {
             type: Object
         },
     },
-    data() {
-        return {
-            defaultTranslations: {
-                no_results_found: "No results found",
-                previous: "Previous",
-                next: "Next",
-                to: "to",
-                of: "of",
-                results: "results",
-            },
-
-
-        }
-    },
-    methods:{
-        setTranslations(translations) {
-            this.defaultTranslations = translations;
-        },
-    },
     computed: {
-        translations() {
-            return this.defaultTranslations;
-        },
-
         hasPagination() {
             return Object.keys(this.pagination).length > 0;
         },

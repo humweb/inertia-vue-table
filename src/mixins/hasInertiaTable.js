@@ -24,6 +24,7 @@ export default {
         const tableData = {
             page: this.tableProps.page || 1,
             sort: this.tableProps.sort || '',
+            perPage: this.tableProps.perPage || 15,
             filters: this.tableProps.filters,
             columns: this.tableProps.columns || [],
             search: this.tableProps.search || {},
@@ -69,31 +70,6 @@ export default {
             }
         },
 
-        setTableData(data) {
-
-            let page = this.tableData.page || 1;
-
-            let filter = this.getFilterForQuery(
-                data.search || {},
-                data.filters || {},
-            );
-
-            if (!isEqual(filter, this.tableData.filter)) {
-                page = 1;
-            }
-
-
-            this.tableData = {
-                columns: data.columns || [],
-                search: data.search || [],
-
-                page,
-                sort: this.tableData.sort || '',
-                filter,
-            };
-
-            this.tableDataIteration++;
-        },
 
         concatHidden(columns) {
             return columns.filter(c => c.visible == false).map((c) => c.attribute).join(',');

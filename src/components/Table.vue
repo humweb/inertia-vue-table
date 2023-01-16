@@ -3,7 +3,7 @@
         <div
             class="flex md:space-x-4 md:space-y-0 space-y-4 my-4 flex-col md:flex-row bg-white dark:bg-gray-800 p-6 shadow dark:shadow-none rounded-lg">
             <slot
-                name="tableGlobalSearch"
+                name="globalSearch"
                 :search="table.search"
                 :changeGlobalSearchValue="updateGlobalSearchValue"
             >
@@ -18,7 +18,7 @@
 
 
             <slot
-                name="tableFilter"
+                name="filters"
                 :hasFilters="hasFilters"
                 :filters="table.filters"
                 :changeFilterValue="updateFilterValue"
@@ -30,7 +30,7 @@
                     :on-change="updateFilterValue"/>
             </slot>
             <slot
-                name="tableAddSearchRow"
+                name="addSearch"
                 :hasSearchRows="hasSearchRows"
                 :search="table.search"
                 :onAdd="enableSearch"
@@ -42,21 +42,21 @@
                 />
             </slot>
             <slot
-                name="tableColumns"
+                name="toggleColumns"
                 :hasColumns="hasColumns"
                 :columns="table.columns"
-                :changeColumnStatus="updateColumnVisibility"
+                :change="updateColumnVisibility"
             >
                 <TableColumns v-if="hasColumns" :columns="table.columns" :on-change="updateColumnVisibility"/>
             </slot>
         </div>
 
         <slot
-            name="tableSearchRows"
-            :hasSearchRows="hasSearchRows"
+            name="searchRows"
+            :hasSearches="hasSearchRows"
             :search="table.search"
             :removeSearch="removeSearch"
-            :changeSearchValue="updateSearchValue"
+            :updateValue="updateSearchValue"
         >
             <TableSearchRows
                 ref="rows"
@@ -75,12 +75,13 @@
                             class="ring-1 dark:shadow-none ring-black ring-opacity-5 overflow-scroll w-full md:rounded-t-lg">
                             <table class="table table-responsive-xl">
                                 <thead class="bg-gray-50 dark:bg-gray-800 dark:text-gray-200">
-                                <slot name="head">
+                                <slot name="head" :columns="table.columns" :sortHandler="handleSort">
                                     <tr>
                                         <HeaderCell
                                             v-for="column in table.columns"
                                             :cell="column"
-                                            :sort="table.sort" @sort="handleSort"
+                                            :sort="table.sort"
+                                            @sort="handleSort"
                                             class="dark:bg-gray-800">
                                             {{ column.name }}
                                         </HeaderCell>
@@ -108,7 +109,12 @@
         </slot>
 
         <slot name="pagination">
-            <Pagination :pagination="pagination"/>
+            <Pagination :pagination="pagination">
+                <div class="inline-flex mr-4">
+                <PerPageSelect v-model="table.perPage" />
+                </div>
+            </Pagination>
+
         </slot>
     </div>
 </template>
@@ -121,18 +127,19 @@ import TableFilter from './filters/TableFilter.vue';
 import TableGlobalSearch from './filters/TableGlobalSearch.vue';
 import TableSearchRows from './filters/TableSearchRows.vue';
 import get from 'lodash/get';
-
 import HeaderCell from './HeaderCell.vue';
+import PerPageSelect from './PerPageSelect.vue';
 
 export default {
     components: {
+        PerPageSelect,
         Pagination,
         TableAddSearchRow,
         TableColumns,
         TableFilter,
         TableGlobalSearch,
         TableSearchRows,
-        HeaderCell
+        HeaderCell,
     },
     mixins: [{
         methods: {dotGet: get},
@@ -148,17 +155,13 @@ export default {
         },
 
         records: {
-            type: Object,
+            type: Array,
             default: () => {
-                return {};
+                return [];
             },
             required: false,
         },
 
-        onUpdate: {
-            type: Function,
-            required: false,
-        },
         errors: {
             type: Object,
             default() {
@@ -237,10 +240,7 @@ export default {
         table: {
             deep: true,
             handler(value, old) {
-
-                if (this.onUpdate) {
-                    this.$emit('modelValue:input', this.table);
-                }
+                this.$emit('modelValue:input', this.table);
             },
         },
     },
@@ -256,19 +256,6 @@ export default {
 
         hasSearchRows() {
             return Object.keys(this.table.search || {}).length > 0;
-        },
-
-
-        onlyData() {
-            if (this.hasFilters || this.hasColumns || this.hasSearchRows) {
-                return false;
-            }
-
-            if (!this.table.search) {
-                return true;
-            }
-
-            return !this.table.search.global;
         },
     },
 };
