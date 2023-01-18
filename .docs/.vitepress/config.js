@@ -4,6 +4,7 @@
 module.exports = {
     title: 'Inertia Vue Table',
     base: '/inertia-vue-table/',
+    outDir: '../docs/',
     themeConfig: {
 
         // nav: nav(),
