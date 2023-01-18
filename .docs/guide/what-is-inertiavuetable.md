@@ -1,6 +1,6 @@
-# What is Illuminator?
+# What is InertiaVueTables?
 
-Illuminator's is built on Inertia and Vue on the frontend and Laravel on the backend.
+InertiaVueTables is built with Inertia and Vue on the frontend and Laravel on the backend.
 It was created to easily build, filter and sort table data.
 It comes with a wide range of useful configurations to make presenting table data as easy as possible.
 

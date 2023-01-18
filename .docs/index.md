@@ -6,7 +6,7 @@ titleTemplate: Inertia Vue Table
 
 hero:
   name: InertiaVueTable
-  text: Inertia & Vue Powered Tables
+  text: Laravel, Inertia & Vue Powered Tables
   tagline: Inertia, Vue, and PHP combined to create a perfect symphony.
   actions:
     - theme: brand
