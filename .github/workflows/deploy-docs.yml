@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: |
           cd .docs/
-          npm docs:build
+          npm run docs:build
 
 
       - name: Deploy
