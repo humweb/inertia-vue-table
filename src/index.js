@@ -1,11 +1,12 @@
 
 export {default as HasInertiaTable} from './mixins/hasInertiaTable';
 export {default as Dropdown} from './components/Dropdown.vue';
-export {default as HeaderCell} from './components/HeaderCell.vue';
+export {default as THeadCell} from './components/THeadCell.vue';
+export {default as TBodyCell} from './components/TBodyCell.vue';
 export {default as Pagination} from './components/Pagination.vue';
 export {default as Table} from './components/Table.vue';
-export {default as TableAddSearchRow} from './components/filters/TableAddSearchRow.vue';
-export {default as TableColumns} from './components/TableColumns.vue';
-export {default as TableFilter} from './components/filters/TableFilter.vue';
-export {default as TableGlobalSearch} from './components/filters/TableGlobalSearch.vue';
-export {default as TableSearchRows} from './components/filters/TableSearchRows.vue';
+export {default as SearchColumnDropdown} from './components/filters/SearchColumnDropdown.vue';
+export {default as ColumnVisibilityToggles} from './components/ColumnVisibilityToggles.vue';
+export {default as CustomFilters} from './components/filters/CustomFilters.vue';
+export {default as GlobalSearch} from './components/filters/GlobalSearch.vue';
+export {default as SearchFields} from './components/filters/SearchFields.vue';

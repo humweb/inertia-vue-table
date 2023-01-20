@@ -1,21 +1,8 @@
 <template>
-    <ButtonWithDropdown ref="dropdown" v-if="hasRows" :disabled="!rowsLeft" :close-on-click="true" class="w-auto">
+    <Dropdown ref="dropdown" v-if="hasRows" :disabled="!rowsLeft" :close-on-click="true" class="w-auto">
         <template #button>
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-5 w-5 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-            </svg>
-            <span>Search</span>
+            <MagnifyingGlassIcon class="h-6 w-6" />
+<!--            <span>Search</span>-->
         </template>
 
         <div role="menu" aria-orientation="vertical" aria-labelledby="sort-menu">
@@ -31,17 +18,18 @@
                 </button>
             </div>
         </div>
-    </ButtonWithDropdown>
+    </Dropdown>
 </template>
 
 <script>
-import ButtonWithDropdown from "../Dropdown.vue";
+import Dropdown from "../Dropdown.vue";
 import filter from "lodash/filter";
-
+import {MagnifyingGlassIcon} from '@heroicons/vue/24/outline';
 export default {
 
     components: {
-        ButtonWithDropdown,
+        Dropdown,
+        MagnifyingGlassIcon
     },
     props: {
         rows: {

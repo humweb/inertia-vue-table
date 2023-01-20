@@ -1,7 +1,6 @@
 <template>
     <div v-for="(filter, index) in filters" :key="filter.field">
         <div class="">
-
             <select
                 v-if="filter.component == 'select-filter'"
                 :value="filter.value"
@@ -23,8 +22,6 @@
             />
         </div>
     </div>
-    <!--        </div>-->
-    <!--    </ButtonWithDropdown>-->
 </template>
 
 <script>

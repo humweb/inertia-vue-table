@@ -9,7 +9,7 @@
             >
                 <div v-if="table.search && table.search.global"
                      class="flex-grow min-w-min">
-                    <TableGlobalSearch
+                    <GlobalSearch
                         :value="table.search.global.value"
                         :on-change="updateGlobalSearchValue"
                     />
@@ -23,7 +23,7 @@
                 :filters="table.filters"
                 :changeFilterValue="updateFilterValue"
             >
-                <TableFilter
+                <CustomFilters
                     v-if="hasFilters"
                     :filters="table.filters"
                     :errors="errors"
@@ -35,7 +35,7 @@
                 :search="table.search"
                 :onAdd="enableSearch"
             >
-                <TableAddSearchRow
+                <SearchColumnDropdown
                     v-if="hasSearchRows"
                     :rows="table.search"
                     :on-add="enableSearch"
@@ -47,7 +47,7 @@
                 :columns="table.columns"
                 :change="updateColumnVisibility"
             >
-                <TableColumns v-if="hasColumns" :columns="table.columns" :on-change="updateColumnVisibility"/>
+                <ColumnVisibilityToggles v-if="hasColumns" :columns="table.columns" :on-change="updateColumnVisibility"/>
             </slot>
         </div>
 
@@ -58,7 +58,7 @@
             :removeSearch="removeSearch"
             :updateValue="updateSearchValue"
         >
-            <TableSearchRows
+            <SearchFields
                 ref="rows"
                 v-if="hasSearchRows"
                 :rows="table.search"
@@ -77,14 +77,12 @@
                                 <thead class="bg-gray-50 dark:bg-gray-800 dark:text-gray-200">
                                 <slot name="head" :columns="table.columns" :sortHandler="handleSort">
                                     <tr>
-                                        <HeaderCell
+                                        <THeadCell
                                             v-for="column in table.columns"
                                             :cell="column"
                                             :sort="table.sort"
                                             @sort="handleSort"
-                                            class="dark:bg-gray-800">
-                                            {{ column.name }}
-                                        </HeaderCell>
+                                            class="dark:bg-gray-800" />
                                         <th v-if="$slots.action || actionColumn" class="dark:bg-gray-800"></th>
                                     </tr>
                                 </slot>
@@ -95,9 +93,9 @@
                                 <slot name="body" :records="records" :columns="table.columns">
                                     <tr v-for="record in records">
                                         <td v-for="field in table.columns" v-show="field.visible">
-                                            {{ dotGet(record, field.attribute) }}
+                                            <TBodyCell :record="record" :field="field.attribute" />
                                         </td>
-                                        <slot name="action" :record="record"></slot>
+                                        <slot name="action" :record="record" />
                                     </tr>
                                 </slot>
                                 </tbody>
@@ -121,25 +119,27 @@
 
 <script>
 import Pagination from './Pagination.vue';
-import TableAddSearchRow from './filters/TableAddSearchRow.vue';
-import TableColumns from './TableColumns.vue';
-import TableFilter from './filters/TableFilter.vue';
-import TableGlobalSearch from './filters/TableGlobalSearch.vue';
-import TableSearchRows from './filters/TableSearchRows.vue';
-import get from 'lodash/get';
-import HeaderCell from './HeaderCell.vue';
+import SearchColumnDropdown from './filters/SearchColumnDropdown.vue';
+import ColumnVisibilityToggles from './ColumnVisibilityToggles.vue';
+import CustomFilters from './filters/CustomFilters.vue';
+import GlobalSearch from './filters/GlobalSearch.vue';
+import SearchFields from './filters/SearchFields.vue';
+import THeadCell from './THeadCell.vue';
+import TBodyCell from './TBodyCell.vue';
 import PerPageSelect from './PerPageSelect.vue';
+import get from 'lodash/get';
 
 export default {
     components: {
         PerPageSelect,
         Pagination,
-        TableAddSearchRow,
-        TableColumns,
-        TableFilter,
-        TableGlobalSearch,
-        TableSearchRows,
-        HeaderCell,
+        SearchColumnDropdown,
+        ColumnVisibilityToggles,
+        CustomFilters,
+        GlobalSearch,
+        SearchFields,
+        THeadCell,
+        TBodyCell
     },
     mixins: [{
         methods: {dotGet: get},

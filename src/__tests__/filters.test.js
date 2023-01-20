@@ -2,7 +2,7 @@ import {mount} from '@vue/test-utils';
 import {TableFilter} from '../';
 import {describe, expect, it} from 'vitest';
 
-describe('TableFilter.vue', () => {
+describe('CustomFilters.vue', () => {
 
     it('should renders filters and allow setting values',async  () => {
         const wrapper = mount(TableFilter, {
