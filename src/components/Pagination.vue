@@ -24,13 +24,8 @@
         >
             <div>
             <slot />
-                <p class="hidden lg:inline text-sm text-gray-700 dark:text-gray-200">
-                    <span class="font-medium">{{ pagination.from }}</span>
-                    to
-                    <span class="font-medium">{{ pagination.to }}</span>
-                    of
-                    <span class="font-medium">{{ pagination.total }}</span>
-                    results
+                <p class="hidden sm:inline text-sm text-gray-700 dark:text-gray-200 font-medium">
+                    {{ pagination.from }} to {{ pagination.to }} of {{ pagination.total }} results
                 </p>
             </div>
             <div>
@@ -44,18 +39,7 @@
                         class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-500"
                     >
                         <span class="sr-only">Previous</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                clip-rule="evenodd"
-                            />
-                        </svg>
+                        <ChevronLeftIcon class="h-5 w-5"/>
                     </component>
 
                     <div v-for="(link, key) in pagination.links" :key="key">
@@ -77,18 +61,7 @@
                         class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-500"
                     >
                         <span class="sr-only">Next</span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            viewBox="0 0 20 20"
-                            fill="currentColor"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                clip-rule="evenodd"
-                            />
-                        </svg>
+                        <ChevronRightIcon class="h-5 w-5" />
                     </component>
                 </nav>
             </div>
@@ -99,9 +72,13 @@
 
 <script>
 import {Link} from '@inertiajs/inertia-vue3'
+
+import {ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/20/solid';
 export default {
     components:{
-        Link
+        Link,
+        ChevronRightIcon,
+        ChevronLeftIcon
     },
     props: {
         pagination: {

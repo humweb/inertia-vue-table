@@ -4,7 +4,6 @@
             <slot name="trigger"></slot>
         </div>
 
-        <!-- Full Screen Dropdown Overlay -->
         <div v-show="open" class="fixed inset-0 z-40 bg-black/30" @click.self="open = false">
         </div>
 
@@ -20,7 +19,7 @@
                     :class="[widthClass, alignmentClasses]"
                     style="display: none;"
                     @click="autoClose">
-                <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
+                <div class="rounded-lg overflow-hidden ring-1 ring-black ring-opacity-5" :class="contentClasses">
                     <slot name="content"></slot>
                 </div>
             </div>
@@ -44,7 +43,7 @@ export default defineComponent({
             default: '48'
         },
         contentClasses: {
-            default: () => ['py-1', 'bg-white dark:bg-gray-700 dark:text-gray-200']
+            default: () => ['bg-white dark:bg-gray-700 dark:text-gray-200']
         }
     },
 

@@ -9,7 +9,6 @@ Description of available table props.
 | modelValue   | Object       | Table configuration schema       |
 | records      | Array        | Records to display in table      |
 | errors       | Object       | Errors for filters               |
-| actionColumn | Boolean      | Show we display an action column |
 
 ## Table Schema Definition
 This section describes the Table schema. The data is passed to table with `v-model` 

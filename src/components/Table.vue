@@ -7,8 +7,9 @@
                 :search="table.search"
                 :changeGlobalSearchValue="updateGlobalSearchValue"
             >
-                <div v-if="table.search && table.search.global"
-                     class="flex-grow min-w-min">
+                <div
+                    v-if="table.search && table.search.global"
+                    class="flex-grow min-w-min">
                     <GlobalSearch
                         :value="table.search.global.value"
                         :on-change="updateGlobalSearchValue"
@@ -47,7 +48,10 @@
                 :columns="table.columns"
                 :change="updateColumnVisibility"
             >
-                <ColumnVisibilityToggles v-if="hasColumns" :columns="table.columns" :on-change="updateColumnVisibility"/>
+                <ColumnVisibilityToggles
+                    v-if="hasColumns"
+                    :columns="table.columns"
+                    :on-change="updateColumnVisibility"/>
             </slot>
         </div>
 
@@ -82,8 +86,7 @@
                                             :cell="column"
                                             :sort="table.sort"
                                             @sort="handleSort"
-                                            class="dark:bg-gray-800" />
-                                        <th v-if="$slots.action || actionColumn" class="dark:bg-gray-800"></th>
+                                            class="dark:bg-gray-800"/>
                                     </tr>
                                 </slot>
                                 </thead>
@@ -92,10 +95,12 @@
                                     class="bg-white text-gray-800 divide-y divide-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:divide-gray-800">
                                 <slot name="body" :records="records" :columns="table.columns">
                                     <tr v-for="record in records">
-                                        <td v-for="field in table.columns" v-show="field.visible">
-                                            <TBodyCell :record="record" :field="field.attribute" />
-                                        </td>
-                                        <slot name="action" :record="record" />
+                                        <TBodyCell
+                                            v-for="field in table.columns"
+                                            v-show="field.visible"
+                                            :record="record"
+                                            :field="field"/>
+                                        <slot name="action" :record="record"/>
                                     </tr>
                                 </slot>
                                 </tbody>
@@ -109,7 +114,7 @@
         <slot name="pagination">
             <Pagination :pagination="pagination">
                 <div class="inline-flex mr-4">
-                <PerPageSelect v-model="table.perPage" />
+                    <PerPageSelect v-model="table.perPage"/>
                 </div>
             </Pagination>
 
@@ -139,7 +144,7 @@ export default {
         GlobalSearch,
         SearchFields,
         THeadCell,
-        TBodyCell
+        TBodyCell,
     },
     mixins: [{
         methods: {dotGet: get},
@@ -168,7 +173,6 @@ export default {
                 return {};
             },
         },
-        actionColumn: Boolean,
     },
     data() {
         return {

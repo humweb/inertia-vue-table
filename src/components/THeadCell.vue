@@ -1,15 +1,21 @@
 <template>
-    <th v-show="cell.visible" class="text-left" :class="{'cursor-pointer': cell.sortable }" @click.prevent="onClick">
+    <th
+        v-show="cell.visible"
+        :class="{'cursor-pointer': cell.sortable, 'text-right': cell.component == 'action-field', 'text-left': cell.component !== 'action-field'}"
+        @click.prevent="onClick">
         <slot :direction="sortDirection">
-            <div class="flex flex-row items-center">
+            <div
+                :class="[cell.component == 'action-field' ? 'justify-end' : 'flex flex-row items-center']"
+            >
                 {{ cell.name }}
                 <div
+                    v-if="cell.sortable"
                     class="ml-2 inline-flex"
                     :class="{ 'text-gray-400': !this.sort , 'text-blue-500': this.sort && this.sort.endsWith(cell.attribute) }">
 
-                    <ChevronUpDownIcon v-if="sortDirection === ''" class="w-4 h-4" />
-                    <ChevronUpIcon v-if="sortDirection === 'asc'" class="w-4 h-4" />
-                    <ChevronDownIcon v-if="sortDirection === 'desc'" class="w-4 h-4" />
+                        <ChevronUpDownIcon v-if="sortDirection === ''" class="w-4 h-4"/>
+                        <ChevronUpIcon v-if="sortDirection === 'asc'" class="w-4 h-4"/>
+                        <ChevronDownIcon v-if="sortDirection === 'desc'" class="w-4 h-4"/>
                 </div>
             </div>
         </slot>

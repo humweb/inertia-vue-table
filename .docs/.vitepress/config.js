@@ -11,11 +11,11 @@ module.exports = {
         sidebar: {
             '/guide/': sidebarGuide(),
         },
-        algolia: {
-            appId: 'W5CY2S9LMZ',
-            apiKey: 'c73409be45109b0c282f41b517909a34',
-            indexName: 'inertia-vue-table'
-        },
+        // algolia: {
+        //     appId: 'W5CY2S9LMZ',
+        //     apiKey: 'c73409be45109b0c282f41b517909a34',
+        //     indexName: 'inertia-vue-table'
+        // },
     },
 
 };
