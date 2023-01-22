@@ -59,9 +59,9 @@ Description of available table slots.
 ::: details Code example
 ```vue-html
 <Table>
-    <template #action="{row}">
+    <template #action="{record}">
         <td>
-            <button @edit="editRow(row.id)">Edit</button>  
+            <button @edit="editRow(record.id)">Edit</button>  
         </td>
     </template>
 </Table>
