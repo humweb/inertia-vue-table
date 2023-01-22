@@ -29,7 +29,6 @@ mixins: [HasInertiaTable]
     :pagination="pagination"
     v-model="tableData"
     @sort="sortBy"
-    action-column
 />
 
 ```

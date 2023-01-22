@@ -5,6 +5,7 @@ Description of available table props.
 ## Field types
 * ID
 * Text
+* Action
 
 ## Fluent API 
 
@@ -29,3 +30,16 @@ Allows you to hide the field's column.
 #### `searchable()`
 The searchable setter tells the frontend that this field is searchable.
 This will add an option to the search filter to allow the user to select the field for searching.
+
+---
+
+### Actions
+#### `actions(array $actions)`
+This functionality is only for the `Actions` field.
+The actions setter allows you to build an actions menu for the record.
+The params are used to build the route.
+```php
+->actions([
+    ['label' => 'Edit', 'route' => 'admin.roles.edit', 'params' => ['id']]
+]);
+```
