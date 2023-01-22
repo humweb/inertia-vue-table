@@ -20,20 +20,20 @@ module.exports = {
 
 };
 
-function nav() {
-    return [
-        {
-            text: 'Docs',
-            activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
-            items: [
-                {text: 'Guide', link: '/guide/introduction'},
-                {text: 'Tutorial', link: '/tutorial/'},
-                {text: 'Examples', link: '/examples/'},
-                {text: 'Quick Start', link: '/guide/quick-start'},
-            ],
-        },
-    ];
-}
+// function nav() {
+//     return [
+//         {
+//             text: 'Docs',
+//             activeMatch: `^/(guide|style-guide|cookbook|examples)/`,
+//             items: [
+//                 {text: 'Guide', link: '/guide/introduction'},
+//                 {text: 'Tutorial', link: '/tutorial/'},
+//                 {text: 'Examples', link: '/examples/'},
+//                 {text: 'Quick Start', link: '/guide/quick-start'},
+//             ],
+//         },
+//     ];
+// }
 
 function sidebarGuide() {
     return [
