@@ -1,7 +1,7 @@
 <template>
     <Dropdown placement="bottom-end" :active="hasDisabledFilter">
         <template #button>
-            <EyeIcon class="h-6 w-6"/>
+            <EyeIcon class="h-4 w-4 my-1"/>
         </template>
 
         <div role="menu" aria-orientation="vertical" aria-labelledby="sort-menu">

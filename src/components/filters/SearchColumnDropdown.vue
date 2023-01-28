@@ -1,7 +1,7 @@
 <template>
     <Dropdown ref="dropdown" v-if="hasRows" :disabled="!rowsLeft" :close-on-click="true" class="w-auto">
         <template #button>
-            <MagnifyingGlassIcon class="h-6 w-6" />
+            <MagnifyingGlassIcon class="h-4 w-4 my-1" />
 <!--            <span>Search</span>-->
         </template>
 
