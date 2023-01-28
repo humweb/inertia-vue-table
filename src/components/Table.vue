@@ -132,7 +132,9 @@ import SearchFields from './filters/SearchFields.vue';
 import THeadCell from './THeadCell.vue';
 import TBodyCell from './TBodyCell.vue';
 import PerPageSelect from './PerPageSelect.vue';
-import get from 'lodash/get';
+
+
+
 
 export default {
     components: {
@@ -146,9 +148,6 @@ export default {
         THeadCell,
         TBodyCell,
     },
-    mixins: [{
-        methods: {dotGet: get},
-    }],
     props: {
         modelValue: Object,
         pagination: {
@@ -182,9 +181,17 @@ export default {
 
 
     methods: {
-        handleSort(key) {
-            this.$emit('sort', key);
+        handleSort(column) {
+            // this.$emit('sort', key);
+            this.table.page = 1;
 
+            // Clear sort
+            if (this.table.sort === `-${column}`) {
+                this.table.sort = null;
+            }
+            else {
+                this.table.sort = this.table.sort === column ? `-${column}` : column;
+            }
         },
         removeSearch(key) {
             this.table.search[key].enabled = false;
