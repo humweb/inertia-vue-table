@@ -3,9 +3,9 @@
         <input
             class="form-input pr-12"
             placeholder="Search..."
-            :value="value"
+            :value="modelValue"
             type="text"
-            @input="onChange($event.target.value)"
+            @input="update($event.target.value)"
         />
         <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
             <MagnifyingGlassIcon
@@ -19,21 +19,23 @@
 
 <script>
 import {MagnifyingGlassIcon} from '@heroicons/vue/24/solid';
+
 export default {
     props: {
-        value: {
+        modelValue: {
             type: String,
             default: '',
             required: false,
         },
-
-        onChange: {
-            type: Function,
-            required: true,
+    },
+    components: {
+        MagnifyingGlassIcon,
+    },
+    methods: {
+        update(value) {
+            this.$emit('update:modelValue', value);
         },
     },
-    components:{
-        MagnifyingGlassIcon
-    }
+
 };
 </script>

@@ -6,7 +6,7 @@
         </template>
 
         <div role="menu" aria-orientation="vertical" aria-labelledby="sort-menu">
-            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+            <div class="divide-y divide-gray-200 dark:divide-gray-600" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                 <button
                     v-for="searchOption in rows"
                     v-show="showRow(searchOption)"

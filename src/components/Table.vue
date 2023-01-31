@@ -5,14 +5,13 @@
             <slot
                 name="globalSearch"
                 :search="table.search"
-                :changeGlobalSearchValue="updateGlobalSearchValue"
+                :updateSearchValue="updateGlobalSearchValue"
             >
                 <div
                     v-if="table.search && table.search.global"
                     class="flex-grow min-w-min">
                     <GlobalSearch
-                        :value="table.search.global.value"
-                        :on-change="updateGlobalSearchValue"
+                        v-model="table.search.global.value"
                     />
                 </div>
             </slot>

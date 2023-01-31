@@ -31,9 +31,6 @@ import debounce from 'lodash/debounce';
 
 export default {
 
-    components: {
-
-    },
     props: {
         filters: {
             type: Object,
@@ -58,9 +55,7 @@ export default {
     },
     computed: {
         hasEnabledFilter() {
-            return find(this.filters, (filter, key) => filter.value != '' && filter.value != null)
-                ? true
-                : false;
+            return find(this.filters, (filter, key) => filter.value != '' && filter.value != null) !== undefined;
         },
     },
 };
