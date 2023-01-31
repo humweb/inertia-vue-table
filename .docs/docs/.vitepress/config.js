@@ -8,7 +8,12 @@ module.exports = {
     themeConfig: {
         sidebar: {
             '/guide/': sidebarGuide(),
-        }
+        },
+        algolia: {
+            appId: 'PJ0PW79NSC',
+            apiKey: '016a824de5ad3697e323467f17e9f8c4',
+            indexName: 'inertia-vue-table'
+        },
     }
 
 };
