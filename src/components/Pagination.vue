@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import {Link} from '@inertiajs/inertia-vue3'
+import {Link} from '@inertiajs/vue3'
 
 import {ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/20/solid';
 export default {

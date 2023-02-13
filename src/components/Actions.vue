@@ -23,7 +23,7 @@
 
 <script>
 import Dropdown from './DropdownComp.vue';
-import {Link} from '@inertiajs/inertia-vue3';
+import {Link} from '@inertiajs/vue3';
 import {EllipsisHorizontalIcon} from '@heroicons/vue/24/outline';
 import get from 'lodash/get';
 
