@@ -1,6 +1,7 @@
 
 export {default as HasInertiaTable} from './mixins/hasInertiaTable';
 export {default as Dropdown} from './components/Dropdown.vue';
+export {default as Actions} from './components/Actions.vue';
 export {default as THeadCell} from './components/THeadCell.vue';
 export {default as TBodyCell} from './components/TBodyCell.vue';
 export {default as Pagination} from './components/Pagination.vue';
