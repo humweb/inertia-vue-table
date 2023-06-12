@@ -1,6 +1,6 @@
 {
 	"name": "inertia-vue-table-docs",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "ISC",
 	"scripts": {
 		"docs:dev": "vitepress dev docs",
