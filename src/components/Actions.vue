@@ -25,7 +25,7 @@
 import Dropdown from './DropdownComp.vue';
 import {Link} from '@inertiajs/vue3';
 import {EllipsisHorizontalIcon} from '@heroicons/vue/24/outline';
-import get from 'lodash/get';
+import get from 'lodash-es/get';
 
 export default {
     name: 'Actions',

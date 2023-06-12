@@ -41,7 +41,7 @@
 
 <script>
 import Dropdown from './Dropdown.vue';
-import find from 'lodash/find';
+import find from 'lodash-es/find';
 
 import {EyeIcon} from '@heroicons/vue/24/outline';
 

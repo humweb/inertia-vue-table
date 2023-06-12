@@ -26,8 +26,8 @@
 
 <script>
 
-import find from 'lodash/find';
-import debounce from 'lodash/debounce';
+import find from 'lodash-es/find';
+import debounce from 'lodash-es/debounce';
 
 export default {
 

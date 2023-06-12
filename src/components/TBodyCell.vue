@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import get from 'lodash/get';
+import get from 'lodash-es/get';
 import Actions from './Actions.vue';
 export default {
     components:{

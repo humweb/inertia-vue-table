@@ -23,7 +23,7 @@
 
 <script>
 import Dropdown from "../Dropdown.vue";
-import filter from "lodash/filter";
+import filter from "lodash-es/filter";
 import {MagnifyingGlassIcon} from '@heroicons/vue/24/outline';
 export default {
 

@@ -1,6 +1,6 @@
-import forEach from 'lodash/forEach';
-import isEqual from 'lodash/isEqual';
-import debounce from 'lodash/debounce';
+import forEach from 'lodash-es/forEach';
+import isEqual from 'lodash-es/isEqual';
+import debounce from 'lodash-es/debounce';
 
 export default {
     props: {
