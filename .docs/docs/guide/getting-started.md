@@ -5,7 +5,7 @@ This section will help you set up the frontend components
 ## Step. 1: install package
 
 ```sh
-$ composer install humweb\inertia-table
+$ composer require humweb\inertia-table
 $ npm i inertia-vue-table
 ```
 
