@@ -4,11 +4,12 @@ Description of available table props.
 
 ## Table Props
 
-| Prop         | Type/Default | Description                      |
-|:-------------|:-------------|:---------------------------------|
-| modelValue   | Object       | Table configuration schema       |
-| records      | Array        | Records to display in table      |
-| errors       | Object       | Errors for filters               |
+| Prop        | Type/Default | Description                    |
+|:------------|:-------------|:-------------------------------|
+| modelValue  | Object       | Table configuration schema     |
+| records     | Array        | Records to display in table    |
+| errors      | Object       | Errors for filters             |
+| showFilters | Boolean/true | Show or hide filters container |
 
 ## Table Schema Definition
 This section describes the Table schema. The data is passed to table with `v-model` 
