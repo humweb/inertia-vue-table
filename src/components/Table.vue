@@ -2,6 +2,7 @@
     <div>
 
         <div
+            v-if="showFilters"
             class="flex md:space-x-4 md:space-y-0 space-y-4 my-4 flex-col md:flex-row bg-white dark:bg-gray-800 p-6 shadow dark:shadow-none rounded-lg">
             <slot
                 name="globalSearch"
@@ -172,6 +173,12 @@ export default {
                 return {};
             },
         },
+
+        showFilters: {
+            type: Boolean,
+            default: true,
+        },
+
     },
     data() {
         return {
