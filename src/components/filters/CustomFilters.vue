@@ -20,6 +20,7 @@
                 :class="{ error: errors[filter.field] }"
                 :placeholder="filter.label"
             />
+            <button class="btn btn-default" @click="clear(index)">X</button>
         </div>
     </div>
 </template>
@@ -41,14 +42,17 @@ export default {
             type: Function,
             required: true,
         },
-        errors:{
+        errors: {
             type: Object,
             default() {
-                return {}
-            }
-        }
+                return {};
+            },
+        },
     },
     methods: {
+        clear(key) {
+            this.onChange(key, null);
+        },
         handleChange: debounce(function(key, value) {
             this.onChange(key, value);
         }, 300),

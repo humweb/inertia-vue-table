@@ -669,7 +669,7 @@ function Ya(e, t, r) {
   }
   return N.cancel = I, N.flush = C, N;
 }
-const Mm = {
+const Lm = {
   props: {
     tableProps: {
       type: Object,
@@ -5767,6 +5767,9 @@ const Hg = /* @__PURE__ */ ge(Ng, [["render", Ug]]), Vg = {
     }
   },
   methods: {
+    clear(e) {
+      this.onChange(e, null);
+    },
     handleChange: Ya(function(e, t) {
       this.onChange(e, t);
     }, 300)
@@ -5779,8 +5782,8 @@ const Hg = /* @__PURE__ */ ge(Ng, [["render", Ug]]), Vg = {
 }, zg = { class: "" }, qg = ["value", "onChange"], Gg = {
   value: "",
   disabled: ""
-}, Wg = ["value"], Kg = ["value", "onInput", "placeholder"];
-function Jg(e, t, r, n, o, a) {
+}, Wg = ["value"], Kg = ["value", "onInput", "placeholder"], Jg = ["onClick"];
+function Xg(e, t, r, n, o, a) {
   return A(!0), $(pe, null, be(r.filters, (s, c) => (A(), $("div", {
     key: s.field
   }, [
@@ -5804,12 +5807,16 @@ function Jg(e, t, r, n, o, a) {
         onInput: (d) => a.handleChange(c, d.target.value),
         class: ve(["form-input", { error: r.errors[s.field] }]),
         placeholder: s.label
-      }, null, 42, Kg)) : te("", !0)
+      }, null, 42, Kg)) : te("", !0),
+      E("button", {
+        class: "btn btn-default",
+        onClick: (d) => a.clear(c)
+      }, "X", 8, Jg)
     ])
   ]))), 128);
 }
-const Xg = /* @__PURE__ */ ge(Vg, [["render", Jg]]);
-function Qg(e, t) {
+const Qg = /* @__PURE__ */ ge(Vg, [["render", Xg]]);
+function Yg(e, t) {
   return A(), $("svg", {
     xmlns: "http://www.w3.org/2000/svg",
     viewBox: "0 0 24 24",
@@ -5823,7 +5830,7 @@ function Qg(e, t) {
     })
   ]);
 }
-const Yg = {
+const Zg = {
   props: {
     modelValue: {
       type: String,
@@ -5832,25 +5839,25 @@ const Yg = {
     }
   },
   components: {
-    MagnifyingGlassIcon: Qg
+    MagnifyingGlassIcon: Yg
   },
   methods: {
     update(e) {
       this.$emit("update:modelValue", e);
     }
   }
-}, Zg = { class: "relative" }, em = ["value"], tm = { class: "absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none" };
-function rm(e, t, r, n, o, a) {
+}, em = { class: "relative" }, tm = ["value"], rm = { class: "absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none" };
+function nm(e, t, r, n, o, a) {
   const s = V("MagnifyingGlassIcon");
-  return A(), $("div", Zg, [
+  return A(), $("div", em, [
     E("input", {
       class: "form-input pr-12",
       placeholder: "Search...",
       value: r.modelValue,
       type: "text",
       onInput: t[0] || (t[0] = (c) => a.update(c.target.value))
-    }, null, 40, em),
-    E("div", tm, [
+    }, null, 40, tm),
+    E("div", rm, [
       Me(s, {
         class: "h-5 w-5 text-gray-400",
         viewBox: "0 0 20 20",
@@ -5859,7 +5866,7 @@ function rm(e, t, r, n, o, a) {
     ])
   ]);
 }
-const nm = /* @__PURE__ */ ge(Yg, [["render", rm]]), im = {
+const im = /* @__PURE__ */ ge(Zg, [["render", nm]]), om = {
   props: {
     rows: {
       type: Object,
@@ -5893,7 +5900,7 @@ const nm = /* @__PURE__ */ ge(Yg, [["render", rm]]), im = {
       return uo(this.rows, (e) => this.searchOptionIsEnabled(e.key) && e.key !== "global");
     }
   }
-}, om = { class: "w-full bg-white dark:bg-gray-800 px-4 py-8 border dark:border-none mb-4 rounded-lg mt-4" }, am = { class: "flex items-center space-x-4" }, sm = { class: "space-y-8" }, lm = { class: "text-sm" }, cm = { class: "flex-grow space-y-8" }, um = { class: "flex-grow relative" }, fm = ["value", "onInput"], dm = { class: "absolute inset-y-0 right-0 pr-3 flex items-center" }, pm = ["onClick"], hm = /* @__PURE__ */ E("span", { class: "sr-only" }, "Remove search", -1), ym = /* @__PURE__ */ E("svg", {
+}, am = { class: "w-full bg-white dark:bg-gray-800 px-4 py-8 border dark:border-none mb-4 rounded-lg mt-4" }, sm = { class: "flex items-center space-x-4" }, lm = { class: "space-y-8" }, cm = { class: "text-sm" }, um = { class: "flex-grow space-y-8" }, fm = { class: "flex-grow relative" }, dm = ["value", "onInput"], pm = { class: "absolute inset-y-0 right-0 pr-3 flex items-center" }, hm = ["onClick"], ym = /* @__PURE__ */ E("span", { class: "sr-only" }, "Remove search", -1), gm = /* @__PURE__ */ E("svg", {
   xmlns: "http://www.w3.org/2000/svg",
   class: "h-5 w-5",
   fill: "none",
@@ -5906,27 +5913,27 @@ const nm = /* @__PURE__ */ ge(Yg, [["render", rm]]), im = {
     "stroke-width": "2",
     d: "M6 18L18 6M6 6l12 12"
   })
-], -1), gm = [
-  hm,
-  ym
+], -1), mm = [
+  ym,
+  gm
 ];
-function mm(e, t, r, n, o, a) {
-  return yt((A(), $("div", om, [
-    E("div", am, [
-      E("div", sm, [
+function vm(e, t, r, n, o, a) {
+  return yt((A(), $("div", am, [
+    E("div", sm, [
+      E("div", lm, [
         (A(!0), $(pe, null, be(a.enabledFilters, (s, c) => (A(), $("div", {
           key: c,
           class: "h-8 flex form-label items-center"
         }, [
-          E("span", lm, ye(s.label), 1)
+          E("span", cm, ye(s.label), 1)
         ]))), 128))
       ]),
-      E("div", cm, [
+      E("div", um, [
         (A(!0), $(pe, null, be(a.enabledFilters, (s, c) => (A(), $("div", {
           key: c,
           class: "h-8 flex items-center"
         }, [
-          E("div", um, [
+          E("div", fm, [
             E("input", {
               class: "form-input",
               ref_for: !0,
@@ -5934,12 +5941,12 @@ function mm(e, t, r, n, o, a) {
               value: s.value,
               type: "text",
               onInput: (d) => r.onChange(s.key, d.target.value)
-            }, null, 40, fm),
-            E("div", dm, [
+            }, null, 40, dm),
+            E("div", pm, [
               E("button", {
                 onClick: Er((d) => r.onRemove(s.key), ["prevent"]),
                 class: "rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              }, gm, 8, pm)
+              }, mm, 8, hm)
             ])
           ])
         ]))), 128))
@@ -5949,7 +5956,7 @@ function mm(e, t, r, n, o, a) {
     [Nt, a.hasFiltersEnabled]
   ]);
 }
-const vm = /* @__PURE__ */ ge(im, [["render", mm]]), bm = {
+const bm = /* @__PURE__ */ ge(om, [["render", vm]]), wm = {
   props: {
     modelValue: {
       type: [Number, String],
@@ -5975,8 +5982,8 @@ const vm = /* @__PURE__ */ ge(im, [["render", mm]]), bm = {
       this.$emit("update:modelValue", e);
     }
   }
-}, wm = ["value"];
-function _m(e, t, r, n, o, a) {
+}, _m = ["value"];
+function Sm(e, t, r, n, o, a) {
   return yt((A(), $("select", {
     ref: "input",
     "onUpdate:modelValue": t[0] || (t[0] = (s) => o.selected = s),
@@ -5985,20 +5992,20 @@ function _m(e, t, r, n, o, a) {
     (A(!0), $(pe, null, be(r.options, (s) => (A(), $("option", {
       key: s,
       value: s
-    }, ye(s), 9, wm))), 128))
+    }, ye(s), 9, _m))), 128))
   ], 512)), [
     [Ys, o.selected]
   ]);
 }
-const Sm = /* @__PURE__ */ ge(bm, [["render", _m]]), Om = {
+const Om = /* @__PURE__ */ ge(wm, [["render", Sm]]), Am = {
   components: {
-    PerPageSelect: Sm,
+    PerPageSelect: Om,
     Pagination: ig,
     SearchColumnDropdown: Eg,
     ColumnVisibilityToggles: Hg,
-    CustomFilters: Xg,
-    GlobalSearch: nm,
-    SearchFields: vm,
+    CustomFilters: Qg,
+    GlobalSearch: im,
+    SearchFields: bm,
     THeadCell: Hy,
     TBodyCell: qy
   },
@@ -6097,22 +6104,22 @@ const Sm = /* @__PURE__ */ ge(bm, [["render", _m]]), Om = {
       return Object.keys(this.table.search || {}).length > 0;
     }
   }
-}, Am = {
-  key: 0,
-  class: "flex md:space-x-4 md:space-y-0 space-y-4 my-4 flex-col md:flex-row bg-white dark:bg-gray-800 p-6 shadow dark:shadow-none rounded-lg"
 }, Em = {
   key: 0,
+  class: "flex md:space-x-4 md:space-y-0 space-y-4 my-4 flex-col md:flex-row bg-white dark:bg-gray-800 p-6 shadow dark:shadow-none rounded-lg"
+}, xm = {
+  key: 0,
   class: "flex-grow min-w-min"
-}, xm = { class: "mt-8 flex flex-col" }, Tm = { class: "overflow-x-auto" }, Pm = { class: "overflow-x" }, Cm = { class: "ring-1 dark:shadow-none ring-black ring-opacity-5 overflow-scroll w-full md:rounded-t-lg" }, $m = { class: "table table-responsive-xl" }, Rm = { class: "bg-gray-50 dark:bg-gray-800 dark:text-gray-200" }, Im = { class: "bg-white text-gray-800 divide-y divide-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:divide-gray-800" }, Fm = { class: "inline-flex mr-4" };
-function Nm(e, t, r, n, o, a) {
+}, Tm = { class: "mt-8 flex flex-col" }, Pm = { class: "overflow-x-auto" }, Cm = { class: "overflow-x" }, $m = { class: "ring-1 dark:shadow-none ring-black ring-opacity-5 overflow-scroll w-full md:rounded-t-lg" }, Rm = { class: "table table-responsive-xl" }, Im = { class: "bg-gray-50 dark:bg-gray-800 dark:text-gray-200" }, Fm = { class: "bg-white text-gray-800 divide-y divide-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:divide-gray-800" }, Nm = { class: "inline-flex mr-4" };
+function Dm(e, t, r, n, o, a) {
   const s = V("GlobalSearch"), c = V("CustomFilters"), d = V("SearchColumnDropdown"), u = V("ColumnVisibilityToggles"), h = V("SearchFields"), v = V("THeadCell"), b = V("TBodyCell"), w = V("PerPageSelect"), p = V("Pagination");
   return A(), $("div", null, [
-    r.showFilters ? (A(), $("div", Am, [
+    r.showFilters ? (A(), $("div", Em, [
       Y(e.$slots, "globalSearch", {
         search: o.table.search,
         updateSearchValue: a.updateGlobalSearchValue
       }, () => [
-        o.table.search && o.table.search.global ? (A(), $("div", Em, [
+        o.table.search && o.table.search.global ? (A(), $("div", xm, [
           Me(s, {
             modelValue: o.table.search.global.value,
             "onUpdate:modelValue": t[0] || (t[0] = (y) => o.table.search.global.value = y)
@@ -6169,12 +6176,12 @@ function Nm(e, t, r, n, o, a) {
       }, null, 8, ["rows", "on-remove", "on-change"])) : te("", !0)
     ]),
     Y(e.$slots, "table", {}, () => [
-      E("div", xm, [
-        E("div", Tm, [
-          E("div", Pm, [
-            E("div", Cm, [
-              E("table", $m, [
-                E("thead", Rm, [
+      E("div", Tm, [
+        E("div", Pm, [
+          E("div", Cm, [
+            E("div", $m, [
+              E("table", Rm, [
+                E("thead", Im, [
                   Y(e.$slots, "head", {
                     columns: o.table.columns,
                     sortHandler: a.handleSort
@@ -6189,7 +6196,7 @@ function Nm(e, t, r, n, o, a) {
                     ])
                   ])
                 ]),
-                E("tbody", Im, [
+                E("tbody", Fm, [
                   Y(e.$slots, "body", {
                     records: r.records,
                     columns: o.table.columns
@@ -6214,7 +6221,7 @@ function Nm(e, t, r, n, o, a) {
     Y(e.$slots, "pagination", {}, () => [
       Me(p, { pagination: r.pagination }, {
         default: se(() => [
-          E("div", Fm, [
+          E("div", Nm, [
             Me(w, {
               modelValue: o.table.perPage,
               "onUpdate:modelValue": t[1] || (t[1] = (y) => o.table.perPage = y)
@@ -6226,18 +6233,18 @@ function Nm(e, t, r, n, o, a) {
     ])
   ]);
 }
-const Lm = /* @__PURE__ */ ge(Om, [["render", Nm]]);
+const jm = /* @__PURE__ */ ge(Am, [["render", Dm]]);
 export {
   By as Actions,
   Hg as ColumnVisibilityToggles,
-  Xg as CustomFilters,
+  Qg as CustomFilters,
   es as Dropdown,
-  nm as GlobalSearch,
-  Mm as HasInertiaTable,
+  im as GlobalSearch,
+  Lm as HasInertiaTable,
   ig as Pagination,
   Eg as SearchColumnDropdown,
-  vm as SearchFields,
+  bm as SearchFields,
   qy as TBodyCell,
   Hy as THeadCell,
-  Lm as Table
+  jm as Table
 };
