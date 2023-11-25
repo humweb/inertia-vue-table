@@ -5,7 +5,7 @@
                 v-if="filter.component == 'select-filter'"
                 :value="filter.value"
                 @change="handleChange(index, $event.target.value)"
-                class="form-select inline  border-0 focus:border-none ring-0"
+                class="form-select inline focus:ring-0"
                 :class="{ error: errors[filter.field] }">
                 <option value="" disabled>{{ filter.label }}</option>
                 <option v-for="(option, key) in filter.options" :value="key" :key="key">{{ option }}</option>
@@ -16,7 +16,7 @@
                 type="text"
                 :value="filter.value"
                 @input="handleChange(index, $event.target.value)"
-                class="form-input border-0 focus:border-none ring-0"
+                class="form-input focus:ring-0"
                 :class="{ error: errors[filter.field] }"
                 :placeholder="filter.label"
             />

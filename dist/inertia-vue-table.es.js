@@ -5922,7 +5922,7 @@ function Rm(e, t, r, n, a, o) {
         key: 0,
         value: s.value,
         onChange: (u) => o.handleChange(c, u.target.value),
-        class: ve(["form-select inline border-0 focus:border-none ring-0", { error: r.errors[s.field] }])
+        class: ve(["form-select inline focus:ring-0", { error: r.errors[s.field] }])
       }, [
         E("option", Sm, ye(s.label), 1),
         (A(!0), $(pe, null, be(s.options, (u, d) => (A(), $("option", {
@@ -5935,7 +5935,7 @@ function Rm(e, t, r, n, a, o) {
         type: "text",
         value: s.value,
         onInput: (u) => o.handleChange(c, u.target.value),
-        class: ve(["form-input border-0 focus:border-none ring-0", { error: r.errors[s.field] }]),
+        class: ve(["form-input focus:ring-0", { error: r.errors[s.field] }]),
         placeholder: s.label
       }, null, 42, Am)) : X("", !0),
       s.component == "text-filter" ? (A(), $("div", Em, [
