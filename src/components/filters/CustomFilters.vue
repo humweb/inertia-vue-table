@@ -5,7 +5,7 @@
                 v-if="filter.component == 'select-filter'"
                 :value="filter.value"
                 @change="handleChange(index, $event.target.value)"
-                class="form-select inline"
+                class="form-select inline  border-0 focus:border-none ring-0"
                 :class="{ error: errors[filter.field] }">
                 <option value="" disabled>{{ filter.label }}</option>
                 <option v-for="(option, key) in filter.options" :value="key" :key="key">{{ option }}</option>
@@ -16,14 +16,14 @@
                 type="text"
                 :value="filter.value"
                 @input="handleChange(index, $event.target.value)"
-                class="form-input"
+                class="form-input border-0 focus:border-none ring-0"
                 :class="{ error: errors[filter.field] }"
                 :placeholder="filter.label"
             />
             <div v-if="filter.component == 'text-filter'" class="absolute inset-y-0 right-0 pr-3 flex items-center">
                 <button
                     @click.prevent="handleChange(index, '')"
-                    class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                    class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-0"
                 >
                     <span class="sr-only">Remove search</span>
                     <svg
