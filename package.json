@@ -1,6 +1,6 @@
 {
     "name": "inertia-vue-table",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "A Laravel Inertia Vue Table Component",
     "main": "src/index.js",
     "scripts": {
