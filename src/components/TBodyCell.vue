@@ -1,7 +1,8 @@
 <template>
-    <td :class="{'text-right': field.component == 'action-field'}">
+    <td :class="{'text-right': field.component === 'action-field'}">
         <slot>
-            <Actions v-if="field.component == 'action-field'" :record="record" :actions="field.actions" />
+            <Actions v-if="field.component === 'action-field'" :record="record" :actions="field.actions" />
+            <LinkField v-else-if="field.component === 'link-field'" :field="field" v-html="get(record, field.attribute)" />
             <template v-else>
                 <span v-html="get(record, field.attribute)"></span>
             </template>
@@ -12,9 +13,11 @@
 <script>
 import get from 'lodash-es/get';
 import Actions from './Actions.vue';
+import LinkField from './Fields/LinkField.vue';
 export default {
     components:{
-        Actions
+        Actions,
+        LinkField
     },
     props: {
         record: {
