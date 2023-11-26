@@ -3,7 +3,7 @@
         <slot>
             <Actions v-if="field.component == 'action-field'" :record="record" :actions="field.actions" />
             <template v-else>
-            {{ get(record, field.attribute) }}
+                <span v-html="get(record, field.attribute)"></span>
             </template>
         </slot>
     </td>
