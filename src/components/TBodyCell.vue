@@ -2,9 +2,10 @@
     <td :class="{'text-right': field.component === 'action-field'}">
         <slot>
             <Actions v-if="field.component === 'action-field'" :record="record" :actions="field.actions" />
-            <LinkField v-else-if="field.component === 'link-field'" :field="field" v-html="get(record, field.attribute)" />
+            <LinkField v-else-if="field.component === 'link-field'" :field="field" :value="get(record, field.attribute)" />
+            <ImageField v-else-if="field.component === 'image-field'" :field="field" :value="get(record, field.attribute)" />
             <template v-else>
-                <span v-html="get(record, field.attribute)"></span>
+               {{ get(record, field.attribute) }}
             </template>
         </slot>
     </td>
@@ -14,10 +15,13 @@
 import get from 'lodash-es/get';
 import Actions from './Actions.vue';
 import LinkField from './Fields/LinkField.vue';
+import ImageField from './Fields/ImageField.vue';
+
 export default {
     components:{
         Actions,
-        LinkField
+        LinkField,
+        ImageField
     },
     props: {
         record: {

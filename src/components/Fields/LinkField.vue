@@ -14,8 +14,7 @@ const routeParams = computed(() => {
 </script>
 
 <template>
-    <Link :href="route(props.field.route, routeParams)" :class="props.field.class">{{value}}</Link>
-
+    <Link :href="route(props.field.route, routeParams)" :class="props.field.class">{{props.value}}</Link>
 </template>
 
 <style scoped>
