@@ -1,39 +1,40 @@
 <template>
-    <td :class="{'text-right': field.component === 'action-field'}">
-        <slot>
-            <Actions v-if="field.component === 'action-field'" :record="record" :actions="field.actions" />
-            <LinkField v-else-if="field.component === 'link-field'" :field="field" :value="get(record, field.attribute)" />
-            <ImageField v-else-if="field.component === 'image-field'" :field="field" :value="get(record, field.attribute)" />
-            <template v-else>
-               {{ get(record, field.attribute) }}
-            </template>
-        </slot>
-    </td>
+  <td :class="{'text-right': field.component == 'action-field'}">
+    <slot>
+      <Actions v-if="field.component == 'action-field'" :record="record" :actions="field.actions"/>
+      <DateField v-if="field.component === 'date'" v-model="value" :format="field.meta.dateFormat" :relative="field.meta.relative"/>
+      <template v-else>
+        {{ value }}
+      </template>
+    </slot>
+  </td>
 </template>
 
 <script>
 import get from 'lodash-es/get';
 import Actions from './Actions.vue';
-import LinkField from './Fields/LinkField.vue';
-import ImageField from './Fields/ImageField.vue';
+import DateField from "@/components/Table/components/fields/DateField.vue";
 
 export default {
-    components:{
-        Actions,
-        LinkField,
-        ImageField
+  components: {
+    Actions,
+    DateField,
+  },
+  props: {
+    record: {
+      type: Object,
+      required: true,
     },
-    props: {
-        record: {
-            type: Object,
-            required: true,
-        },
-        field: {
-            type: Object,
-            required: true
-        },
+    field: {
+      type: Object,
+      required: true
     },
-    methods: {get},
-
+  },
+  methods: {get},
+  computed: {
+    value() {
+      return get(this.record, this.field.attribute)
+    }
+  }
 };
 </script>
