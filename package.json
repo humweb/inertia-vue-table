@@ -11,7 +11,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:humweb/inertia-vue-table.git"
+        "url": "git+ssh://git@github.com/humweb/inertia-vue-table.git"
     },
     "author": "ryun <ryun@humboldtweb.com>",
     "license": "ISC",
