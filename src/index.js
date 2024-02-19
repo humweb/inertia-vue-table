@@ -5,6 +5,7 @@ export {default as Actions} from './components/Actions.vue';
 export {default as THeadCell} from './components/THeadCell.vue';
 export {default as TBodyCell} from './components/TBodyCell.vue';
 export {default as Pagination} from './components/Pagination.vue';
+export {default as PerPageSelect} from './components/PerPageSelect.vue';
 export {default as Table} from './components/Table.vue';
 export {default as SearchColumnDropdown} from './components/filters/SearchColumnDropdown.vue';
 export {default as ColumnVisibilityToggles} from './components/ColumnVisibilityToggles.vue';

@@ -21,6 +21,7 @@ export default {
     },
 
     data() {
+
         const tableData = {
             page: this.tableProps.page || 1,
             sort: this.tableProps.sort || '',
