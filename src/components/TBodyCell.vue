@@ -13,7 +13,7 @@
 <script>
 import get from 'lodash-es/get';
 import Actions from './Actions.vue';
-import DateField from "@/components/Table/components/fields/DateField.vue";
+import DateField from "./Fields/DateField.vue";
 
 export default {
   components: {
