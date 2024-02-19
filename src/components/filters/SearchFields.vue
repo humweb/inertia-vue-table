@@ -15,15 +15,15 @@
           <div class="flex-grow relative">
             <input
               class="form-input"
-              :ref="search.key"
+              :ref="search.field"
               :value="search.value"
               type="text"
-              @input="onChange(search.key, $event.target.value)"
+              @input="onChange(search.field, $event.target.value)"
             />
             <div class="absolute inset-y-0 right-0 pr-3 flex items-center">
               <button
-                @click.prevent="onRemove(search.key)"
-                class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-0 focus:ring-offset-2 focus:ring-indigo-500"
+                @click.prevent="onRemove(search.field)"
+                class="rounded-md text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 <span class="sr-only">Remove search</span>
                 <svg
@@ -94,7 +94,7 @@ export default {
 
         enabledFilters() {
             return filter(this.rows, (search) => {
-                return this.searchOptionIsEnabled(search.key) && search.key !== "global";
+                return this.searchOptionIsEnabled(search.field) && search.field !== "global";
             });
         },
     },
