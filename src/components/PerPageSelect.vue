@@ -24,7 +24,7 @@ export default {
         options: {
             type: Array,
             default() {
-                return [15, 30, 50, 100];
+                return [15, 25, 30, 50, 100];
             },
             required: false,
         }

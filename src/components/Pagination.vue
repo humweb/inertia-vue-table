@@ -1,117 +1,157 @@
-<template>
-    <nav
-        class="bg-white px-4 py-3 flex items-center justify-between border-t border-gray-200 sm:px-6 dark:border-gray-700 md:rounded-b-lg dark:bg-gray-800 dark:text-gray-200"
-        v-if="hasPagination && pagination.total > 0"
-    >
-
-        <div class="flex-1 flex justify-between sm:hidden">
-            <component
-                :is="previousPageUrl ? 'Link' : 'div'"
-                :href="previousPageUrl"
-                class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white dark:bg-gray-700 hover:text-gray-500 dark:border-gray-800 dark:text-gray-200"
-            >Previous
-            </component>
-            <component
-                :is="nextPageUrl ? 'Link' : 'div'"
-                :href="nextPageUrl"
-                class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white dark:bg-gray-700 hover:text-gray-500 dark:border-gray-800 dark:text-gray-200"
-            >Next
-            </component>
-        </div>
-        <div
-            v-if="pagination.total > 0"
-            class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between"
-        >
-            <div>
-            <slot />
-                <p class="hidden sm:inline text-sm text-gray-700 dark:text-gray-200 font-medium">
-                    {{ pagination.from }} to {{ pagination.to }} of {{ pagination.total }} results
-                </p>
-            </div>
-            <div>
-                <nav
-                    class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-                    aria-label="Pagination"
-                >
-                    <component
-                        :is="previousPageUrl ? 'Link' : 'div'"
-                        :href="previousPageUrl"
-                        class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-500"
-                    >
-                        <span class="sr-only">Previous</span>
-                        <ChevronLeftIcon class="h-5 w-5"/>
-                    </component>
-
-                    <div v-for="(link, key) in pagination.links" :key="key">
-                        <slot name="link">
-                            <component
-                                v-if="!isNaN(link.label) || link.label === '...'"
-                                :is="link.url ? 'Link' : 'div'"
-                                :href="link.url"
-                                class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700  dark:hover:bg-gray-500 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200"
-                                :class="{'hover:bg-gray-50 dark:bg-gray-800': link.url && !link.active, 'bg-gray-200 dark:bg-gray-700': link.active, 'dark:bg-gray-700': link.label === '...'}"
-                            >{{ link.label }}
-                            </component>
-                        </slot>
-                    </div>
-
-                    <component
-                        :is="nextPageUrl ? 'Link' : 'div'"
-                        :href="nextPageUrl"
-                        class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-500 dark:text-gray-200 dark:hover:bg-gray-500"
-                    >
-                        <span class="sr-only">Next</span>
-                        <ChevronRightIcon class="h-5 w-5" />
-                    </component>
-                </nav>
-            </div>
-        </div>
-    </nav>
-    <p v-if="pagination.total == 0" class="p-4 text-center">No results found</p>
-</template>
-
 <script>
-import {Link} from '@inertiajs/vue3'
 
-import {ChevronRightIcon, ChevronLeftIcon} from '@heroicons/vue/20/solid';
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon
+} from "@heroicons/vue/20/solid";
+import {getRange, transform} from "./pagination.js";
+
 export default {
-    components:{
-        Link,
-        ChevronRightIcon,
-        ChevronLeftIcon
+  components: {
+    ChevronRightIcon,
+    ChevronLeftIcon,
+    ChevronDoubleLeftIcon,
+    ChevronDoubleRightIcon
+  },
+  emits: ['change'],
+  props: {
+    pagination: {
+      type: Object,
+      default() {
+        return {
+          perPage: 25,
+          page: 1,
+          total_pages: 0,
+          record_count: 0,
+        }
+      }
     },
-    props: {
-        pagination: {
-            type: Object
-        },
+    siblingCount: {
+      type: Number,
+      default() {
+        return 1
+      }
     },
-    computed: {
-        hasPagination() {
-            return Object.keys(this.pagination).length > 0;
-        },
-
-
-        previousPageUrl() {
-            if ("prev_page_url" in this.pagination) {
-                return this.pagination.prev_page_url;
-            }
-
-            if ("links" in this.pagination) {
-                return this.pagination.links.prev;
-            }
-        },
-
-        nextPageUrl() {
-            if ("next_page_url" in this.pagination) {
-                return this.pagination.next_page_url;
-            }
-
-            if ("links" in this.pagination) {
-                return this.pagination.links.next;
-            }
-        },
+    showEdges: {
+      type: Boolean,
+      default() {
+        return true
+      }
     },
+    firstPage: {
+      type: Number,
+      default: 1
+    }
+  },
+  computed: {
+    pageItems(){
+      return transform(getRange(this.pagination.page, this.pagination.total_pages, this.siblingCount, this.showEdges))
+    },
+    lastPage() {
+      return this.pagination.total_pages
+    },
+    isOnFirstPage() {
+      return this.pagination.page === this.firstPage
+    },
+    isOnLastPage() {
+      return this.pagination.page === this.lastPage
+    },
+    fromCount() {
+      return (this.pagination.page - 1) * this.pagination.perPage + 1
+    },
+    toCount() {
+      return Math.min(this.pagination.page * this.pagination.perPage, this.pagination.record_count)
+    }
+  },
+  created() {
 
-
-};
+  },
+  methods: {
+    change(page) {
+      this.$emit('change', page)
+    },
+    forward() {
+      if (this.pagination.page !== this.totalPages) {
+        this.change(this.pagination.page + 1)
+      }
+    },
+    back() {
+      if (this.pagination.page !== 1) {
+        this.change(this.pagination.page - 1)
+      }
+    },
+  }
+}
 </script>
+
+<template>
+
+  <nav
+      class="bg-white py-8  mt-4 flex items-center border-t dark:border-transparent dark:bg-gray-800 dark:text-gray-200"
+      v-if="pagination && pagination.record_count > 0"
+  >
+    <div class="w-full grid grid-cols-1 xl:grid-cols-2 gap-y-8">
+      <div
+          v-if="pagination.record_count > 0"
+          class="block sm:flex-1 sm:flex sm:items-center justify-start xl:justify-between"
+      >
+        <div>
+          <slot/>
+          <p class="inline text-sm text-gray-700 dark:text-gray-400">
+            Showing
+            {{ ' ' }}
+            <span class="font-medium">{{ fromCount }}</span>
+            {{ ' ' }}
+            to
+            {{ ' ' }}
+            <span class="font-medium">{{ toCount }}</span>
+            {{ ' ' }}
+            of
+            {{ ' ' }}
+            <span class="font-medium">{{ pagination.record_count }}</span>
+            {{ ' ' }}
+            results
+          </p>
+        </div>
+      </div>
+      <div class="flex items-center ml-0 xl:ml-auto">
+
+        <span
+            @click="change(1)"
+            :class="[isOnFirstPage ? 'text-gray-400 dark:bg-gray-700 cursor-not-allowed' : 'text-hover:bg-gray-50 cursor-pointer hover:bg-gray-100 ', 'relative inline-flex items-center rounded-l-md px-2 py-2 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:z-20 focus:outline-offset-0']">
+          <span class="sr-only">Previous</span>
+          <ChevronDoubleLeftIcon class="size-5" aria-hidden="true"/>
+        </span>
+        <span @click="back"
+           :class="[isOnFirstPage ? 'text-gray-400 cursor-not-allowed' : 'text-hover:bg-gray-50 cursor-pointer hover:bg-gray-100 dark:hover:text-gray-400 dark:hover:bg-gray-700', 'relative inline-flex items-center px-2 py-2 text-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:z-20 focus:outline-offset-0']">
+          <ChevronLeftIcon class="size-5" aria-hidden="true"/>
+        </span>
+          <template v-for="(n, i) in pageItems" :key="i">
+
+            <span v-if="n.type == 'page'" @click="change(n.value)"
+               :class="[n.value == pagination.page ? 'cursor-not-allowed bg-gray-100 dark:bg-gray-700' : 'text-hover:bg-gray-50 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700', 'relative inline-flex items-center px-4 py-2 text-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:z-20 focus:outline-offset-0']"
+               v-html="n.value">
+            </span>
+            <span v-if="n.type == 'ellipsis'" @click="change(n.value)"
+               :class="['relative inline-flex items-center px-4 py-2 text-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700']">
+              ...
+            </span>
+
+          </template>
+        <span @click="forward"
+           :class="[isOnLastPage ? 'text-gray-400 cursor-not-allowed' : 'text-hover:bg-gray-50 cursor-pointer hover:bg-gray-100 hover:dark:bg-gray-700', 'relative inline-flex items-center px-2 py-2 text-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:z-20 focus:outline-offset-0']">
+          <ChevronRightIcon class="size-5" aria-hidden="true"/>
+        </span>
+
+        <span
+            @click="change(this.pagination.total_pages)"
+            :class="[isOnLastPage ? 'text-gray-400 cursor-not-allowed' : 'text-hover:bg-gray-50 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700', 'relative inline-flex items-center rounded-r-md px-2 py-2 ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:z-20 focus:outline-offset-0']">
+          <span class="sr-only">Next</span>
+          <ChevronDoubleRightIcon class="size-5" aria-hidden="true"/>
+        </span>
+      </div>
+    </div>
+  </nav>
+</template>
