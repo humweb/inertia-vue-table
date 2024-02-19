@@ -1,8 +1,8 @@
 <script>
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-import timezone from 'dayjs/plugin/timezone'
-import relativeTime from 'dayjs/plugin/relativeTime'
+import dayjs from 'dayjs/esm/index'
+import utc from 'dayjs/esm/plugin/utc/index'
+import timezone from 'dayjs/esm/plugin/timezone/index'
+import relativeTime from 'dayjs/esm/plugin/relativeTime/index'
 
 
 dayjs.extend(utc)

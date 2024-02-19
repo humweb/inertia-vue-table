@@ -94,7 +94,7 @@ export default {
 
         enabledFilters() {
             return filter(this.rows, (search) => {
-                return this.searchOptionIsEnabled(search.field) && search.field !== "global";
+                return search.field !== "global" && this.searchOptionIsEnabled(search.field);
             });
         },
     },
