@@ -6,9 +6,28 @@ This section will help you set up the frontend components
 
 ## Step. 1: install package
 
+Laravel install
+```bash
+composer require humweb\inertia-table
+```
+or
+
+Go Adapter install
+
+```bash
+go get github.com/humweb/inertia-go
+```
+Checkout https://github.com/humweb/inertia-go for mor info
+
+---
+
+frontend package
 ```sh
-$ composer require humweb\inertia-table
-$ npm i inertia-vue-table
+// Laravel
+npm i inertia-vue-table@1.04
+
+// Go
+npm i inertia-vue-table
 ```
 
 ## Step. 2: Import component and mixin
@@ -30,8 +49,6 @@ mixins: [HasInertiaTable]
     :records="records"
     :pagination="pagination"
     v-model="tableData"
-    @sort="sortBy"
-    action-column
 />
 
 ```
