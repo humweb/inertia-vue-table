@@ -1,7 +1,7 @@
 {
     "name": "inertia-vue-table",
-    "version": "2.0.8",
-    "description": "A Go + Inertia + Vue Table Component",
+    "version": "3.0.0",
+    "description": "Inertia + Vue Table Component",
     "main": "src/index.js",
     "scripts": {
         "dev": "vite",
@@ -20,18 +20,26 @@
     },
     "homepage": "https://github.com/humweb/inertia-vue-table#readme",
     "devDependencies": {
-        "@inertiajs/vue3": "^1.0.0",
+        "@vitejs/plugin-vue": "^5.2.1",
+        "@vue/tsconfig": "^0.7.0",
+        "typescript": "~5.6.2",
+        "vue-tsc": "^2.2.0",
         "@testing-library/vue": "^6.6.1",
-        "@vitejs/plugin-vue": "^4.0.0",
         "@vue/test-utils": "^2.2.7",
         "jsdom": "^21.0.0",
         "lodash-es": "^4.17.21",
-        "vite": "^4.0.0",
-        "vitest": "^0.27.1",
-        "vue": "^3.2.41"
+        "vite": "^6.0.6",
+        "vitest": "^2.1.8",
+        "vue": "^3.5.13"
     },
     "dependencies": {
         "@heroicons/vue": "^2.0.13",
-        "dayjs": "^1.11.10"
+        "@inertiajs/core": "^2.0.0",
+        "@inertiajs/vue3": "^2.0.0",
+        "dayjs": "^1.11.10",
+        "lucide-vue-next": "^0.469.0"
+    },
+    "volta": {
+        "node": "23.9.0"
     }
 }

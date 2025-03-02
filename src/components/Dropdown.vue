@@ -1,68 +1,43 @@
-<template>
-    <DropdownComp :close-on-click="closeOnClick">
-        <template #trigger>
-            <button
-                type="button"
-                :disabled="disabled"
-                class="btn btn-slate"
-                :class="{ 'cursor-not-allowed': disabled }"
-                aria-haspopup="true"
-                ref="button"
-            >
-                <slot name="button"/>
-            </button>
-        </template>
-
-        <template #content>
-            <slot/>
-        </template>
-    </DropdownComp>
-</template>
-
-<script>
+<script setup lang="ts">
 import DropdownComp from './DropdownComp.vue';
+import { ref } from 'vue';
 
-export default {
-    components: {
-        DropdownComp,
-    },
-    props: {
-        closeOnClick:{
-            type: Boolean,
-            default: false
-        },
-        active: {
-            type: Boolean,
-            default: false,
-            required: false,
-        },
+interface Props {
+  closeOnClick?: boolean;
+  disabled?: boolean;
+}
 
-        disabled: {
-            type: Boolean,
-            default: false,
-            required: false,
-        },
-    },
+const { closeOnClick = false, disabled = false } = defineProps<Props>();
 
-    data() {
-        return {
-            opened: false,
-            popper: null,
-        };
-    },
+const opened = ref(false);
 
+//@ts-ignore
+function toggle() {
+  opened.value = !opened.value;
+}
 
-    methods: {
-        toggle() {
-            this.opened = !this.opened;
-        },
-
-        hide() {
-            this.opened = false;
-        },
-    },
-
-    mounted() {
-    },
-};
+//@ts-ignore
+function hide() {
+  opened.value = false;
+}
 </script>
+
+<template>
+  <DropdownComp :close-on-click="closeOnClick">
+    <template #trigger>
+      <button
+        type="button"
+        :disabled="disabled"
+        class="btn btn-sm btn-slate"
+        :class="{ 'cursor-not-allowed': disabled }"
+        aria-haspopup="true"
+        ref="button">
+        <slot name="button" />
+      </button>
+    </template>
+
+    <template #content>
+      <slot />
+    </template>
+  </DropdownComp>
+</template>

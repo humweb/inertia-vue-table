@@ -1,44 +1,15 @@
-<template>
-    <select ref="input" v-model="selected" class="form-select py-2 inline-flex">
-        <option
-            v-for="option in options"
-            :key="option"
-            :value="option"
-        >
-            {{ option }}
-        </option>
-    </select>
-</template>
+<script lang="ts" setup>
+const model = defineModel<number | string>({ default: 15 });
 
-<script>
-
-
-export default {
-    props: {
-        modelValue: {
-            type: [Number, String],
-            default: 15,
-            required: false,
-        },
-
-        options: {
-            type: Array,
-            default() {
-                return [15, 25, 30, 50, 100];
-            },
-            required: false,
-        }
-    },
-    emits: ['update:modelValue'],
-    data() {
-        return {
-            selected: this.modelValue,
-        };
-    },
-    watch: {
-        selected(selected) {
-            this.$emit('update:modelValue', selected);
-        },
-    },
-};
+const { options = [5, 15, 25, 30, 50, 100] } = defineProps<{
+  options?: Array<number | string>;
+}>();
 </script>
+
+<template>
+  <select ref="input" v-model="model" class="form-select pr-8 py-2">
+    <option v-for="option in options" :key="option" :value="option">
+      {{ option }}
+    </option>
+  </select>
+</template>
