@@ -24,7 +24,7 @@ Checkout https://github.com/humweb/inertia-go for mor info
 frontend package
 ```sh
 // Laravel
-npm i inertia-vue-table@1.04
+npm i inertia-vue-table@1.0.4
 
 // Go
 npm i inertia-vue-table
